@@ -1,0 +1,97 @@
+@import "tailwindcss";
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@theme {
+  --color-terquise:#4692E8;
+  --color-main:#58E1D4;
+  --color-post:#1359B1;
+  --color-fushia:#F55BBC;
+}
+
+@layer components {
+  .cont {
+    @apply w-full lg:w-[80%] mx-auto px-3 lg:px-0
+  }
+  .wrapper {
+    @apply w-full flex justify-between flex-col  lg:flex-row ;
+  }
+  .nav-link {
+    @apply text-blue-950  font-semibold text-lg dark:text-emerald-400;
+  }
+  .card {
+    @apply  w-full md:w-3/4 lg:w-1/2  mx-auto  rounded-md flex flex-col gap-3 py-5 dark:text-white  ;
+  }
+  .title {
+    @apply  font-mono text-5xl  ps-[12%]  text-blue-950 dark:text-emerald-400  font-bold;
+  }
+  .input {
+    @apply flex flex-col gap-2 w-3/4 mx-auto;
+  }
+  .input input {
+    @apply bg-blue-950 dark:bg-emerald-400 text-white dark:text-black rounded-md py-2 focus:outline-2 focus:outline-terquise dark:focus:outline-blue-950 ;
+  } 
+  .input label {
+    @apply text-lg  font-bold text-black dark:text-white;
+  }
+  .submitBtn {
+    @apply py-2 px-4 rounded-md bg-black text-white hover:bg-blue-950  dark:bg-white dark:text-black dark:hover:bg-emerald-400  transition-all;
+  }  
+  .alert {
+    @apply text-red-700;
+  }  
+
+  .specialSpan  {
+    @apply font-mono text-blue-950 dark:text-emerald-400 font-bold;
+  } 
+
+  .post {
+    @apply  bg-white text-black dark:bg-blue-950 dark:text-white p-2 flex flex-col gap-3 justify-center items-center  mx-auto;
+  }
+  .header {
+    @apply  flex justify-between items-center w-full;
+  }
+  .header .group {
+    @apply flex gap-2;
+  }
+  .avatar {
+    @apply w-15 h-15 rounded-3xl bg-slate-400 overflow-hidden;
+  }
+  .body {
+    @apply w-full flex-col;
+  }
+  .footer {
+    @apply w-full;
+  }
+  .icons {
+    @apply flex justify-evenly w-full py-4;
+  }
+  .icon {
+    @apply flex gap-1;
+  }
+  .comment {
+    @apply bg-slate-200 dark:bg-black dark:text-white mx-auto w-full text-black flex flex-col gap-3 p-4 rounded-2xl;
+  }
+  .createInput {
+    @apply outline-3  rounded-lg outline-blue-950 dark:outline-sky-400  flex gap-4  ;
+  }
+  .createInput input {
+    @apply focus:outline-0  placeholder:text-blue-950 dark:placeholder:text-emerald-400;
+  }
+  .userBoard {
+    @apply flex flex-col gap-3 bg-white dark:bg-blue-950 dark:text-white rounded-3xl p-5 ;
+  }
+  .infoCont {
+    @apply flex gap-3  ;
+  }
+  .iconWrapper {
+      @apply  bg-red-300 hover:text-white hover:bg-red-500 transition-all rounded-lg w-fit;
+  } 
+  .paginate {
+    @apply flex justify-between ;
+  }
+  .paginate button {
+    @apply hover:text-blue-950 dark:hover:text-emerald-400 transition-all font-bold  ;
+  }
+  
+}
+
