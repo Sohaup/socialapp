@@ -2,7 +2,6 @@ import React from 'react'
 import PostInput from '../../components/PostInput/PostInput'
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
-import { Helmet } from 'react-helmet';
 import { useUpdatePost } from '../../Hooks/useUpdatePost'
 
 export default function UpdatePost() {
@@ -11,9 +10,7 @@ export default function UpdatePost() {
 
     return (
         <div>
-            <Helmet>
-                <title>socail app post update</title>
-            </Helmet>
+            
             <div className='userBoard w-full md:w-3/4  mx-auto my-10 '>
                 {
                     isLoading ?
