@@ -6,17 +6,13 @@ import { useNavigate, Link } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import axios from 'axios'
 import { SyncLoader } from 'react-spinners'
-import { Helmet } from 'react-helmet-async'
 import { useRegister } from '../../Hooks/useRegister'
 
 export default function Register() {
     const { handleSubmit, onSubmit, register, errors, isLoading } = useRegister()
 
     return (
-        <div className='card my-auto'>
-            <Helmet>
-                <title>Socailapp Register</title>
-            </Helmet>
+        <div className='card my-auto'>           
             <div className="title">
                 Register
             </div>

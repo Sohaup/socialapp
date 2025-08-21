@@ -17,7 +17,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import PostDetails from './pages/PostDetails/PostDetails'
 import UpdatePost from './pages/UpdatePost/UpdatePost'
 import Profile from './pages/Profile/Profile'
-import { HelmetProvider } from 'react-helmet-async'
+
 
 
 

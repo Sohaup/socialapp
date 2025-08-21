@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { SyncLoader } from 'react-spinners'
-import { Helmet } from 'react-helmet-async';
 import { useLogin } from '../../Hooks/useLogin'
 
 export default function LogIn() {
@@ -12,9 +11,7 @@ export default function LogIn() {
 
 
         <div className='card my-auto'>
-            <Helmet>
-                <title>socail app login</title>
-            </Helmet>
+            
             <div className="title">
                 LogIn
             </div>

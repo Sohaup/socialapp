@@ -5,18 +5,18 @@ import UserDetails from '../../components/UserDetails/UserDetails';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
 import { MoveRight , MoveLeft } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
 import { useHome } from '../../Hooks/useHome';
+import Head from '../../components/Head/Head';
 
 
 export default function Home() {
    const {data , isLoading, getPrevPage , getNextPage } = useHome();   
    
     return (
+        <>
+       
         <div className='flex justify-center my-auto  w-full md:w-3/4 lg:w-1/2 mx-auto '>
-            <Helmet>
-                <title>socail app home</title>
-            </Helmet>
+            
             {
                 isLoading ?
                     <div className="  self-center w-full  ">
@@ -38,6 +38,7 @@ export default function Home() {
                     </div>
             }
         </div>
+        </>
     )
 
 

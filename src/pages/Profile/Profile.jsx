@@ -3,7 +3,6 @@ import { Atom } from 'react-loading-indicators';
 import { Image } from 'lucide-react';
 import PasswordForm from '../../components/PasswordForm/PasswordForm';
 import Post from '../../components/Post/Post';
-import { Helmet } from 'react-helmet-async';
 import { useProfile } from '../../Hooks/useProfile';
 
 
@@ -13,9 +12,7 @@ export default function Profile() {
 
     return (
         <div className=' flex flex-col place-items-center py-8 space-y-10  h-full'>
-            <Helmet>
-                <title>socail app profile</title>
-            </Helmet>
+           
             <div className=" flex flex-col gap-5 bg-white rounded-lg items-center w-fit p-5  ">
                 {isLoading ?
                     <Atom color={'midnightblue'} />
