@@ -1,33 +1,12 @@
 import { AlignJustify, LogOut, Moon, Sun } from 'lucide-react'
-import React, { useContext, useEffect, useState } from 'react'
-import { Link, useNavigate } from "react-router-dom"
+import React from 'react'
+import { Link } from "react-router-dom"
 import icon from "../../assets/blogLogo.png";
-import { tokenContext } from '../../Context/TokenContext';
-import toast from 'react-hot-toast';
+import { useHeader } from '../../Hooks/useHeader';
 
 export default function Header({ toggleDark, dark }) {
-    const [isHidden, setIsHidden] = useState(false);
-    const [isScroll , setIsScroll] = useState(false)
-    const { token  , setToken} = useContext(tokenContext);
-    const navigate = useNavigate()
-
-
-    function logOut() {
-        try {
-        setToken(null);
-        localStorage.removeItem('token');
-        navigate('/login');
-        toast.success("you loged out successfuly");
-        } catch(err) {
-            toast.error(err);
-        }
-    }
-
-    // document.addEventListener('scroll' , ()=>{
-    //     setIsScroll(true)
-    // });
-
     
+    const {isHidden , isScroll , logOut , setIsHidden  , token} = useHeader();
     
     return (
         <nav 

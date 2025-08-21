@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { jwtDecode } from 'jwt-decode'
+import { jwtDecode } from 'jwt-decode';
 
 export const tokenContext = createContext(null);
 
@@ -14,10 +14,10 @@ export default function TokenProvider({ children }) {
 
     }, [token])
 
-
+   
 
     return (
-        <tokenContext.Provider value={{ token, setToken, user, setUser }}>
+        <tokenContext.Provider value={{ token, setToken, user, setUser  }}>
             {children}
         </tokenContext.Provider>
     )

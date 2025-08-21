@@ -1,46 +1,17 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react'
+import React from 'react'
 import AnonymusPersonAvatar from '../../assets/person.png'
 import { Edit, Ellipsis, Trash  , X} from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { tokenContext } from '../../Context/TokenContext'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import axios from 'axios'
-import toast from 'react-hot-toast'
+
+
 import CreateForm from '../CreateForm/CreateForm'
+import { useComment } from '../../Hooks/useComment'
 
 export default function Comment({ comment }) {   
-    const [imgPath, setImgPath] = useState(comment?.commentCreator?.photo)
-    const [isHidden, setIsHidden] = useState(true);
-    const [modalOpen, setModalOpen] = useState(false);
-    const { token, user } = useContext(tokenContext)
-    const manageQuery = useQueryClient();
-    const { mutate } = useMutation({
-        mutationFn: deleteComment,
-        onSuccess: () => {
-            toast.success("comment deleted successfuly");
-            manageQuery.invalidateQueries(["get posts"]);
-        },
-        onError: (err) => {
-            toast.error(err.message)
-        }
-    })
-
-    function deleteComment(commentId) {
-        return axios.delete(`https://linked-posts.routemisr.com/comments/${commentId}`, {
-            headers: { token }
-        })
-    }
-
-     function updateComment(content) {        
-        setModalOpen(false);      
-        return axios.put(`https://linked-posts.routemisr.com/comments/${comment._id}` , 
-           {content} , 
-           {headers : {token}}
-        );
-    }
+   const {isHidden , setIsHidden , mutate , modalOpen , setModalOpen , deleteComment , updateComment , imgPath , setImgPath , user } = useComment(comment)
 
     return (
-        <div className='comment  '>
+        <div className='comment' >
             <div className="header ">
                 <div className="group">
                     <div className="avatar bg-transparent w-10 h-10 my-auto">
@@ -97,7 +68,7 @@ function UpdateCommentDialog({ isOpen, setIsOpen  , comment , updateAction}) {
     
     return (
         <dialog className='fixed inset-0 bg-black/20 flex items-center justify-center w-screen h-screen' hidden={!isOpen}>
-            <div className="cont bg-white rounded-lg">
+            <div className="cont p-0 bg-white dark:bg-blue-950 dark:text-white rounded-lg">
                 <div className="title text-green-400 font-bold text-center border-b-2 my-5 ">
                     update your comment
                 </div>
@@ -109,7 +80,7 @@ function UpdateCommentDialog({ isOpen, setIsOpen  , comment , updateAction}) {
                     <X />
                 </div>
 
-                <div className="footer w-full h-30 bg-slate-200 mt-3 rounded-bl-lg rounded-br-lg">
+                <div className="footer w-full h-30 bg-slate-200 dark:bg-emerald-400 mt-3 rounded-bl-lg rounded-br-lg">
                 </div>
             </div>
         </dialog>

@@ -17,6 +17,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import PostDetails from './pages/PostDetails/PostDetails'
 import UpdatePost from './pages/UpdatePost/UpdatePost'
 import Profile from './pages/Profile/Profile'
+import { HelmetProvider } from 'react-helmet-async'
 
 
 
@@ -37,10 +38,10 @@ function App() {
     },
     {
       path: "/", element: <GuestLayout> <MainLayout /></GuestLayout>, children: [
-        { path: "/profile", element: <Profile/> },
+        { path: "/profile", element: <Profile /> },
         { path: "/home", element: <Home /> },
-        { path: "/posts/:id", element: <PostDetails /> } ,
-        {path:"/posts/update/:id" , element:<UpdatePost/>}
+        { path: "/posts/:id", element: <PostDetails /> },
+        { path: "/posts/update/:id", element: <UpdatePost /> }
       ]
     }
   ])
@@ -49,10 +50,10 @@ function App() {
 
   return (
     <TokenProvider>
-      <QueryClientProvider client={client}>         
+      <QueryClientProvider client={client}>       
           <RouterProvider router={routes} />
           <Toaster />
-          <ReactQueryDevtools initialIsOpen={false} />          
+          <ReactQueryDevtools initialIsOpen={false} />       
       </QueryClientProvider>
     </TokenProvider>
   )

@@ -1,45 +1,19 @@
 import { Ellipsis, MessageCircleMore, Heart, Reply , Pen , Trash, Edit } from 'lucide-react'
-import React, { useContext, useState } from 'react'
+import React from 'react'
 import Comment from '../Comment/Comment'
 import { Link } from 'react-router-dom'
 import CreateForm from '../CreateForm/CreateForm'
-import axios from 'axios'
-import { tokenContext } from '../../Context/TokenContext';
-import toast from 'react-hot-toast'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { usePost } from '../../Hooks/usePost'
 
 
 export default function Post({ post , isDetailed=false , className="" }) {    
-    const {token , user} = useContext(tokenContext);  
-    const [isHidden , setIsHidden]  = useState(true);
-    const manageQuery = useQueryClient()
-    const {mutate} = useMutation({
-        mutationFn:deletePost , 
-        onSuccess:()=> {
-            toast.success("post deleted successfuly");
-            manageQuery.invalidateQueries(["get posts"]);
-        } ,
-        onError:(err) => {
-            toast.error(err.message);
-        }
-    })
-    function postComment(content , postId=post._id) {       
-        return  axios.post("https://linked-posts.routemisr.com/comments" , {content , post:postId} , {headers:{token}})        
-        
-    }
-
-    function deletePost(postId) {
-        return axios.delete(`https://linked-posts.routemisr.com/posts/${postId}` ,
-            {headers : {token}}
-        )
-    }
-        
+   const {isHidden , setIsHidden , mutate  ,user , postComment , deletePost } = usePost(post);
     return (
-        <div className={`post ${className}`}>
+        <div className={`post ${className}`} >
             <div className="header">
                 <div className="group">
                     <div className="avatar ">
-                        <img src={post.user.photo} className='w-full h-full object-cover  '/>
+                        <img src={post.user.photo}  className='w-full h-full object-cover'/>
                     </div>
                     <div className="texts">
                         <p className='font-bold'>{post.user.name}</p>
@@ -49,8 +23,8 @@ export default function Post({ post , isDetailed=false , className="" }) {
 
                { post.user._id == user ?
                 <div className="icon flex flex-col relative " >
-                    <Ellipsis size={40} onMouseEnter={()=>setIsHidden(false)} />
-                    <ul onMouseLeave={()=>setIsHidden(true)}
+                    <Ellipsis size={40} onMouseEnter={()=>setIsHidden(false)}  />
+                    <ul onMouseLeave={()=>setIsHidden(true)} 
                     className={`flex flex-col gap-3 bg-slate-300 dark:bg-black  absolute top-0 left-[-50%] shadow-lg rounded-lg ${!isHidden ? 'h-fit' : 'h-0'} transition-all`} hidden={isHidden}>
                     <li className=' w-full  hover:bg-green-200 dark:hover:text-black py-4 transition-colors '>
                         <Link to={`/posts/update/${post._id}`}>
